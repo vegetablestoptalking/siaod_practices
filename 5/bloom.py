@@ -8,7 +8,7 @@ def hfunc(text, seed=0):
     """
     h = 0
     for c in text:
-        h += ord(c)
+        h += ord(c) + seed
         h += h << 10
         h ^= h >> 6
     h += h << 3
@@ -21,57 +21,56 @@ class Filter1:
     def __init__(self):
         self.bits = 0x00000000
         
-        pass
 
     def add(self, text):
         self.bits |= hfunc(text)
-        self.bits
 
     def contains(self, text):
-        # TODO
-        pass
-
+        hash_code = hfunc(text)
+        return hash_code&self.bits == hash_code
 
 class Filter2:
     def __init__(self, bits_per_hash):
-        # TODO
-        pass
-
+        self.arr = []
+        self.size_hash = bits_per_hash
+        
     def add(self, text):
-        # TODO
-        pass
+        self.arr.append(hfunc(text)&(2**self.size_hash-1))
 
     def contains(self, text):
-        # TODO
-        pass
+        return hfunc(text)&(2**self.size_hash-1) in self.arr
+           
 
 
 class Filter3:
     def __init__(self, size):
-        # TODO
-        pass
+        self.arr = [0]*size
+        self.size = size
 
     def add(self, text):
-        # TODO
-        pass
+        self.arr[hfunc(text)%self.size] = 1
 
     def contains(self, text):
-        # TODO
-        pass
+        return self.arr[hfunc(text)%self.size] == 1
 
 
 class Filter4:
     def __init__(self, size, nfuncs):
-        # TODO
-        pass
+        self.size = size*nfuncs
+        self.arr = [0]*self.size
+        self.nfuncs = nfuncs
+        
 
     def add(self, text):
-        # TODO
-        pass
+        for i in range(self.nfuncs):
+            self.arr[hfunc(text, i)%self.size] = 1
+            
 
     def contains(self, text):
-        # TODO
-        pass
+        for i in range(self.nfuncs):
+            if self.arr[hfunc(text, i)%self.size] != 1:
+                return False
+        return True
 
 
 def shuffle(text):
@@ -102,5 +101,10 @@ def test_hfunc(data):
 random.seed(42)
 
 with open("emails.txt") as f:
-    EMAILS = f.read().split("\n")[:100]
+    EMAILS = f.read().split("\n")[:10000]
 FALSE_EMAILS = [shuffle(e) for e in EMAILS]
+
+#test(Filter1())
+#test(Filter2(10))
+#test(Filter3(1000))
+test(Filter4(20000,5))
