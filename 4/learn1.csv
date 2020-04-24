@@ -1,0 +1,30 @@
+SEP=,
+Temperature, Outlook, Humidity, Windy, Virus, Go
+hot, sunny, high, no, no, no
+hot, sunny, high, yes, no, no
+hot, overcast, high, no, no, yes
+cool, rain, normal, no, no, yes
+cool, overcast, normal, yes, no, yes
+mild, sunny, high, no, no, no
+cool, sunny, normal, no, no, yes
+mild, rain, normal, no, no, yes
+mild, sunny, normal, yes, no, yes
+mild, overcast, high, yes, no, yes
+hot, overcast, normal, no, no, yes
+mild, rain, high, yes, no, no
+cool, rain, normal, yes, no, no
+mild, rain, high, no, no, yes
+hot, sunny, high, no, yes, no
+hot, sunny, high, yes, yes, no
+hot, overcast, high, no, yes, no
+cool, rain, normal, no, yes, no
+cool, overcast, normal, yes, yes, no
+mild, sunny, high, no, yes, no
+cool, sunny, normal, no, yes, no
+mild, rain, normal, no, yes, no
+mild, sunny, normal, yes, yes, no
+mild, overcast, high, yes, yes, no
+hot, overcast, normal, no, yes, no
+mild, rain, high, yes, no, yes, no
+cool, rain, normal, yes, yes, no
+mild, rain, high, no, yes, no
