@@ -56,7 +56,7 @@ class Filter3:
 
 class Filter4:
     def __init__(self, size, nfuncs):
-        self.size = size*nfuncs
+        self.size = size
         self.arr = [0]*self.size
         self.nfuncs = nfuncs
         
@@ -107,4 +107,4 @@ FALSE_EMAILS = [shuffle(e) for e in EMAILS]
 #test(Filter1())
 #test(Filter2(10))
 #test(Filter3(1000))
-test(Filter4(20000,5))
+test(Filter4(100000,5))
